@@ -4,7 +4,11 @@ function [delta, Fx ] = group7_controller( s, e, dpsi, Ux, Uy, r, control_mode, 
 % Prof. Chris Gerdes & CAs Nathan Spielberg, John Alsterda, Alaisha
 % Alexander, Will Harvey, Lucio Mondavi, John Talbot, Trey Weber
 % 
-
+persistent e_history;
+if isempty(e_history)
+    e_history = e;
+end
+e_history = [e_history, e];
 %--------------------------------------------------------------------------
 %% Constants
 %--------------------------------------------------------------------------
@@ -58,8 +62,8 @@ gains.x_la = 8; %arbitrarily chosen, NEEDS ADJUSTMENT
 gains.k_lo = m*0.3*g/1; %assumed placehoder from HW 4. NEEDS ADJUSTMENT
 
 Kp = 1;
-Kd = 1;
-%Ki = 1;
+Kd = 0.5;
+Ki = 1;
 
 %--------------------------------------------------------------------------
 %% Lateral Control Law (Satyan)
@@ -76,10 +80,18 @@ if control_mode == 1 %Lookahead Controler
 else %Your second controller
 
     % not started, done yet
+    dt = 0.001; %s, taken from hard simulation code
     e_dot = Uy*cos(dpsi) + Ux*sin(dpsi);
-    delta = Kp*e + Kd*e_dot; %+ Ki*integ(e)
+    delta = -(Kp*e + Kd*e_dot + Ki*trapz(dt, e_history));
     
-    %need to add integral windup term once integral term is figured out
+    %if the delta value goes over a certain value cap it at that value (for
+    %both negative and positive) Anti-windup
+    value = 10; %not an actual value just a placeholder. Value should be in radians
+    if (delta > value)
+        delta = value;
+    elseif (delta < -value)
+        delta = -value;
+    end
 end
 
 %--------------------------------------------------------------------------
