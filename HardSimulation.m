@@ -33,10 +33,10 @@ lenT = length(t_);
 load('project_path.mat')
 
 % Set simulation mode
- sim_mode = 0;   % Nonlinear model from homework
+ %sim_mode = 0;   % Nonlinear model from homework
 % sim_mode = 1;   % Actuator dynamics only
 % sim_mode = 2;   % Actuator dynamics and noise on measurements
-% sim_mode = 3;   % Actuator dynamics, noisy measurements, and hold period
+sim_mode = 3;   % Actuator dynamics, noisy measurements, and hold period
 
 wait1 = waitbar(0, 'Simulation Initializing');
 j = 0;
@@ -86,7 +86,7 @@ for i = 1:lenT-1
     
     if k == 0
         % Calculate actuator commands
-        [delta_(i), Fx_(i)] = groupnum_controller(s_(i), e_(i), dpsi_(i), Ux_(i),...
+        [delta_(i), Fx_(i)] = group7_controller(s_(i), e_(i), dpsi_(i), Ux_(i),...
             Uy_(i), r_(i), control_mode, path);
         k = 4;
     else %First order hold for 4 ms
