@@ -57,6 +57,10 @@ gains.k_la = 3500; %arbitrarily chosen, NEEDS ADJUSTMENT
 gains.x_la = 8; %arbitrarily chosen, NEEDS ADJUSTMENT
 gains.k_lo = m*0.3*g/1; %assumed placehoder from HW 4. NEEDS ADJUSTMENT
 
+Kp = 1;
+Kd = 1;
+%Ki = 1;
+
 %--------------------------------------------------------------------------
 %% Lateral Control Law (Satyan)
 %--------------------------------------------------------------------------
@@ -72,8 +76,10 @@ if control_mode == 1 %Lookahead Controler
 else %Your second controller
 
     % not started, done yet
-    % delta = Kp e + Kd e-dot + Ki* integ(e)
+    e_dot = Uy*cos(dpsi) + Ux*sin(dpsi);
+    delta = Kp*e + Kd*e_dot; %+ Ki*integ(e)
     
+    %need to add integral windup term once integral term is figured out
 end
 
 %--------------------------------------------------------------------------
