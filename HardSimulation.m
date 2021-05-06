@@ -26,7 +26,8 @@ setup_niki;
 
 % Create time vector
 dt = 0.001;
-t_ = 0:dt:35; %Note: 35 seconds is about how long it takes to traverse the path
+t_ = 0:dt:40; %Note: 35 seconds is about how long it takes to traverse the path
+%(Change by Satyan to 40 secs to confirm stability after 35 seconds)
 lenT = length(t_);
 
 % Load path and speed profile
@@ -36,7 +37,7 @@ load('project_path.mat')
 sim_mode = 0;   % Nonlinear model from homework
 % sim_mode = 1;   % Actuator dynamics only
 % sim_mode = 2;   % Actuator dynamics and noise on measurements
-%sim_mode = 3;   % Actuator dynamics, noisy measurements, and hold period
+% sim_mode = 3;   % Actuator dynamics, noisy measurements, and hold period
 
 wait1 = waitbar(0, 'Simulation Initializing');
 j = 0;
