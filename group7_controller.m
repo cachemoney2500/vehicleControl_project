@@ -57,12 +57,12 @@ rho=1.225; %air density at room temperature
 %--------------------------------------------------------------------------
 %% Control Parameters (Satyan)
 %--------------------------------------------------------------------------
-gains.k_la = 3500; %arbitrarily chosen, NEEDS ADJUSTMENT
+gains.k_la = 4000; %arbitrarily chosen, NEEDS ADJUSTMENT
 gains.x_la = 8; %arbitrarily chosen, NEEDS ADJUSTMENT
-gains.k_lo = m*0.3*g/1; %assumed placehoder from HW 4. NEEDS ADJUSTMENT
+gains.k_lo = m*.1*g; %assumed placehoder from HW 4. NEEDS ADJUSTMENT
 
-Kp = 1;
-Kd = 0.5;
+Kp = 2;
+Kd = 0.4;
 Ki = 1;
 
 %--------------------------------------------------------------------------
@@ -102,7 +102,7 @@ end
 F_rr = f_rr*m*g;
 F_d = 0.5*Cd_A*rho*Ux^2;
 F_des=m*axDes;
-Fx=F_des + F_rr + F_d + (m*gains.k_lo*(UxDes-Ux));
+Fx=F_des + F_rr + F_d + gains.k_lo*(UxDes-Ux);
 
 
 
