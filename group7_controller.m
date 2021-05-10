@@ -7,12 +7,13 @@ function [delta, Fx ] = group7_controller( s, e, dpsi, Ux, Uy, r, control_mode, 
 
 %NOTE (Satyan) - anything marked with a '??' needs better conceptual reasoning and
 %final adjustment
-
+dt = 0.001;
 persistent e_history;
 if isempty(e_history)
-    e_history = e;
+    e_history = 0;
 end
-e_history = [e_history, e];
+e_history = e_history + dt*e;
+%e_history = [e_history, e];
 
 %--------------------------------------------------------------------------
 %% Constants
@@ -64,11 +65,11 @@ rho=1.225; %air density at room temperature
 %--------------------------------------------------------------------------
 gains.k_la = 10000; %arbitrarily chosen, ??
 gains.x_la = 10; %arbitrarily chosen, ??
-gains.k_lo = m*0.2*g; %m*.04*g; %arbitrarily chosen, ??
+gains.k_lo = m*2; %m*.04*g; %arbitrarily chosen, ??
 
-Kp = 2; % arbitrarily chosen, ??
-Kd = 0.4;  % arbitrarily chosen, ??
-Ki = 1;  % arbitrarily chosen, ??
+Kp = .3; % arbitrarily chosen, ??
+Kd = .25;  % arbitrarily chosen, ??
+Ki = .1;  % arbitrarily chosen, ??
 
 %--------------------------------------------------------------------------
 %% Lateral Control Law (Satyan)
@@ -89,11 +90,12 @@ else %Your second controller
     % done yet
     dt = 0.001; %s, taken from hard simulation code
     e_dot = Uy*cos(dpsi) + Ux*sin(dpsi);
-    delta = -(Kp*e + Kd*e_dot + Ki*trapz(dt, e_history));
+    %delta = -(Kp*e + Kd*e_dot + Ki*trapz(dt, e_history));
+    delta = -(Kp*e + Kd*e_dot + Ki*e_history);
     
     %if the delta value goes over a certain value cap it at that value (for
     %both negative and positive) Anti-windup
-    value = 10; %not an actual value just a placeholder. Value should be in radians
+    value = deg2rad(30); %not an actual value just a placeholder. Value should be in radians
     if (delta > value)
         delta = value;
     elseif (delta < -value)
