@@ -1,3 +1,6 @@
+% THIS IS FOR LOOKAHEAD CONTROLLER ADJUSTMENT ONLY
+% DO NOT USE FOR PID CONTROLLER
+
 setup_niki;
 
 % Gains and conditions
