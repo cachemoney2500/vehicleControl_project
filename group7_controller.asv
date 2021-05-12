@@ -74,7 +74,7 @@ gains.k_lo = m*2; %m*.04*g; %arbitrarily chosen, ??
 
 Kp = 1.2; % arbitrarily chosen, ??
 Kd = 0.31;  % arbitrarily chosen, ??
-Ki = 2.45;  % arbitrarily chosen, ??
+Ki = 2.75;  % arbitrarily chosen, ??
 
 %--------------------------------------------------------------------------
 %% Lateral Control Law (Satyan)
