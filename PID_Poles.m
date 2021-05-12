@@ -13,9 +13,9 @@ close all
 setup_niki;
 
 % Gains and conditions
-Kp_ = 0.3;   % [N/m]
-Ki_ = 0:0.1:2;
-Kd_ = 0.2;           % [m]    
+Kp_ = 1.34;   % [N/m]
+Ki_ = 2.7:0.01:2.9;
+Kd_ = 0.31;           % [m]    
 Ux = 10;       % [m/s]
 lenKla = length(Ki_);
 
@@ -65,7 +65,7 @@ for idx = 1:lenKla
          [mM,  nM,  oM,  pM]];
      
     newcol = [0;
-               -Ki*f_tire.Ca_lin;
+               -Ki*f_tire.Ca_lin/veh.m;
                0
                -Ki*veh.a*f_tire.Ca_lin/veh.Iz];
     A = [newcol A];
@@ -91,5 +91,5 @@ grid on
 xlabel('Real Axis')
 ylabel('Imaginary Axis')
 cbar = colorbar('Ticks', Ki_);
-caxis([Ki(1) Ki(end)])
+caxis([Ki_(1) Ki_(end)])
 cbar.Label.String = 'K_{p} [N/m]';

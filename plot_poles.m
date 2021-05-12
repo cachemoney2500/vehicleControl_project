@@ -11,10 +11,10 @@
 setup_niki;
 
 % Gains and conditions
-Kp_ = 0:.3:3;   % [N/m]
-Kd = .3;           % [m]    
+Kp = 1.34;   % [N/m]
+Kd_ = 0.32:.005:0.34;           % [m]    
 Ux = 10;       % [m/s]
-lenKla = length(Kp_);
+lenKla = length(Kd_);
 
 % Allocate space for poles (We know there are 4)
 poles_ = zeros(4,lenKla);
@@ -24,7 +24,7 @@ poles_ = zeros(4,lenKla);
 %--------------------------------------------------------------------------
 for idx = 1:lenKla
     % Select speed
-    Kp = Kp_(idx);
+    Kd = Kd_(idx);
     
     %{
     To make the state matrix easier to input, create each term separately
@@ -78,6 +78,6 @@ xline(0,'--');
 grid on
 xlabel('Real Axis')
 ylabel('Imaginary Axis')
-cbar = colorbar('Ticks', Kp_);
-caxis([Kp_(1) Kp_(end)])
+cbar = colorbar('Ticks', Kd_);
+caxis([Kd_(1) Kd_(end)])
 cbar.Label.String = 'K_{p} [N/m]';
