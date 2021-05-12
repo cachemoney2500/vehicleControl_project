@@ -1,6 +1,6 @@
-% clc
-% clear all
-% close all
+clc
+clear all
+close all
 %% Constants
 %--------------------------------------------------------------------------
 g = 9.81;                       % [m/s^2]  gravity
@@ -49,9 +49,4 @@ den = s^2*(den1*s^2 + den2*s + den3);
 
 TF = num/den;
 
-Kp = 1.2;
-Kd = 0.31;
-Ki = 2.75;
-D = (Kp + Kd*s + Ki/s);
-figure
-rlocus(D*TF)
+rlocus(TF)
