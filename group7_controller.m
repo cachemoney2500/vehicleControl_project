@@ -72,9 +72,13 @@ gains.k_la = 10000; %arbitrarily chosen, ??
 gains.x_la = 10; %arbitrarily chosen, ??
 gains.k_lo = m*2; %m*.04*g; %arbitrarily chosen, ??
 
-Kp = 1.34; % arbitrarily chosen, ??
-Kd = 0.31;  % arbitrarily chosen, ??
-Ki = 2.76;  % arbitrarily chosen, ??
+Kp = 1.34; 
+Kd = 0.31;  
+Ki = 2.76;
+
+Kp_fast = .25; 
+Kd_fast = 0.2;  
+Ki_fast = .8;
 
 %--------------------------------------------------------------------------
 %% Lateral Control Law (Satyan)
@@ -91,6 +95,15 @@ if control_mode == 1 %Lookahead Controler
     
 
 else %Your second controller
+%     if Ux>10
+%         Kp = Kp_fast;
+%         Kd = Kd_fast;
+%         Ki = Ki_fast;
+%     end
+    
+    Kp = lin_map(Kp,Kp_fast,6,12.5,Ux);
+    Kd = lin_map(Kd,Kd_fast,6,12.5,Ux);
+    Ki = lin_map(Ki,Ki_fast,6,12.5,Ux);
 
     % done yet
     e_dot = Uy*cos(dpsi) + Ux*sin(dpsi);

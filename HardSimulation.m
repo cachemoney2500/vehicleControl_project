@@ -15,8 +15,8 @@ clear brakeDynamics; clear engineDynamics; clear steeringDynamics;
 %% CONTROLLER SETUP
 %--------------------------------------------------------------------------
 % Select lookahead controller mode
-control_mode = 1; % Lookahead Controller
-%control_mode = 2; % Your second controller!
+%control_mode = 1; % Lookahead Controller
+control_mode = 2; % Your second controller!
 
 %--------------------------------------------------------------------------
 %% CONSTANTS AND PARAMS
