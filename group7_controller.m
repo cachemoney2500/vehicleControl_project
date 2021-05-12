@@ -12,7 +12,12 @@ persistent e_history;
 if isempty(e_history)
     e_history = 0;
 end
-e_history = e_history + dt*e;
+
+if Ux > 0
+    e_history = e_history + dt*e;
+end
+
+
 %e_history = [e_history, e];
 
 %--------------------------------------------------------------------------
@@ -67,9 +72,9 @@ gains.k_la = 10000; %arbitrarily chosen, ??
 gains.x_la = 10; %arbitrarily chosen, ??
 gains.k_lo = m*2; %m*.04*g; %arbitrarily chosen, ??
 
-Kp = .3; % arbitrarily chosen, ??
-Kd = .25;  % arbitrarily chosen, ??
-Ki = .1;  % arbitrarily chosen, ??
+Kp = 0.72; % arbitrarily chosen, ??
+Kd = 0.1;  % arbitrarily chosen, ??
+Ki = 1.3;  % arbitrarily chosen, ??
 
 %--------------------------------------------------------------------------
 %% Lateral Control Law (Satyan)
@@ -88,14 +93,13 @@ if control_mode == 1 %Lookahead Controler
 else %Your second controller
 
     % done yet
-    dt = 0.001; %s, taken from hard simulation code
     e_dot = Uy*cos(dpsi) + Ux*sin(dpsi);
     %delta = -(Kp*e + Kd*e_dot + Ki*trapz(dt, e_history));
     delta = -(Kp*e + Kd*e_dot + Ki*e_history);
     
     %if the delta value goes over a certain value cap it at that value (for
     %both negative and positive) Anti-windup
-    value = deg2rad(30); %not an actual value just a placeholder. Value should be in radians
+    value = deg2rad(20);
     if (delta > value)
         delta = value;
     elseif (delta < -value)
