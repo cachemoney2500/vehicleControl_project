@@ -17,7 +17,6 @@ if Ux > 0
     e_history = e_history + dt*e;
 end
 
-
 %e_history = [e_history, e];
 
 %--------------------------------------------------------------------------
@@ -68,9 +67,9 @@ rho=1.225; %air density at room temperature
 %--------------------------------------------------------------------------
 %% Control Parameters (Satyan)
 %--------------------------------------------------------------------------
-gains.k_la = 10000; %arbitrarily chosen, ??
-gains.x_la = 10; %arbitrarily chosen, ??
-gains.k_lo = m*2; %m*.04*g; %arbitrarily chosen, ??
+gains.k_la = 8600; %dialed in with pole-zero and root-locus plots
+gains.x_la = 7.8; %dialed in with pole-zero and root-locus plots
+gains.k_lo = m*0.13*g; %m*.04*g; %arbitrarily chosen, ??
 
 Kp = 0.72; % arbitrarily chosen, ??
 Kd = 0.1;  % arbitrarily chosen, ??

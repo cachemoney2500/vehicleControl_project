@@ -15,8 +15,8 @@ clear brakeDynamics; clear engineDynamics; clear steeringDynamics;
 %% CONTROLLER SETUP
 %--------------------------------------------------------------------------
 % Select lookahead controller mode
-%control_mode = 1; % Lookahead Controller
-control_mode = 2; % Your second controller!
+control_mode = 1; % Lookahead Controller
+%control_mode = 2; % Your second controller!
 
 %--------------------------------------------------------------------------
 %% CONSTANTS AND PARAMS
@@ -34,7 +34,7 @@ lenT = length(t_);
 load('project_path.mat')
 
 % Set simulation mode
-%sim_mode = 0;   % Nonlinear model from homework
+% sim_mode = 0;   % Nonlinear model from homework
 % sim_mode = 1;   % Actuator dynamics only
 % sim_mode = 2;   % Actuator dynamics and noise on measurements
 sim_mode = 3;   % Actuator dynamics, noisy measurements, and hold period
