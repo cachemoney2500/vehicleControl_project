@@ -4,10 +4,10 @@
 setup_niki;
 
 % Gains and conditions
-K_la_ = 1000:1000:10000;   % [N/m]
-x_la = 18;     % [m]% keep k_la varying, adjust x_la in 3 m incr (3,6,9,12,15,18)
+K_la_ = 1000:1000:10000;   % [N/m] placeholder range. Values above 10,000 or 12,000 cause system instabilities and/or oscillations
+x_la = 3;     % [m]% keep k_la varying, adjust x_la in 3 m incr (3,6,9,12,15,18)
 % x_la 3 m to 9 m is unstable, 12 and 15 are sweet spot, 18 is oscillatory
-Ux = 6;       % [m/s]
+Ux = 15;       % [m/s]
 lenKla = length(K_la_);
 
 poles_ = zeros(4,lenKla);
@@ -53,6 +53,7 @@ for idx = 1:lenKla
 end
 xline(0,'--');
 grid on
+title(['Varying k-la and Ux =' num2str(Ux) ' and x-la =' num2str(x_la)])
 xlabel('Real Axis')
 ylabel('Imaginary Axis')
 cbar = colorbar('Ticks', K_la_);
