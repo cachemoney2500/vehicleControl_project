@@ -13,8 +13,8 @@ if isempty(e_history)
     e_history = 0;
 end
 
-if Ux > 0
-    e_history = e_history + dt*e;
+if Ux > 1
+    e_history = e_history + e;
 end
 
 
@@ -72,13 +72,10 @@ gains.k_la = 10000; %arbitrarily chosen, ??
 gains.x_la = 10; %arbitrarily chosen, ??
 gains.k_lo = m*2; %m*.04*g; %arbitrarily chosen, ??
 
-Kp = 1.34; 
-Kd = 0.31;  
-Ki = 2.76;
+Kp = .5; 
+Kd = .3;  
+Ki = 0.01;
 
-Kp_fast = .25; 
-Kd_fast = 0.2;  
-Ki_fast = .8;
 
 %--------------------------------------------------------------------------
 %% Lateral Control Law (Satyan)
@@ -95,29 +92,18 @@ if control_mode == 1 %Lookahead Controler
     
 
 else %Your second controller
-%     if Ux>10
-%         Kp = Kp_fast;
-%         Kd = Kd_fast;
-%         Ki = Ki_fast;
-%     end
     
-    Kp = lin_map(Kp,Kp_fast,6,12.5,Ux);
-    Kd = lin_map(Kd,Kd_fast,6,12.5,Ux);
-    Ki = lin_map(Ki,Ki_fast,6,12.5,Ux);
-
-    % done yet
     e_dot = Uy*cos(dpsi) + Ux*sin(dpsi);
-    %delta = -(Kp*e + Kd*e_dot + Ki*trapz(dt, e_history));
     delta = -(Kp*e + Kd*e_dot + Ki*e_history);
     
     %if the delta value goes over a certain value cap it at that value (for
     %both negative and positive) Anti-windup
-    value = deg2rad(20);
-    if (delta > value)
-        delta = value;
-    elseif (delta < -value)
-        delta = -value;
-    end
+%     value = deg2rad(20);
+%     if (delta > value)
+%         delta = value;
+%     elseif (delta < -value)
+%         delta = -value;
+%     end
 end
 
 % OBSERVATIONS FROM LATERAL ERROR CODE
