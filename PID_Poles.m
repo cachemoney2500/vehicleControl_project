@@ -13,7 +13,7 @@ close all
 setup_niki;
 
 % Gains and conditions
-Kp_ = 1.34;   % [N/m]
+Kp_ = .65;   % [N/m]
 Ki_ = 2.7:0.01:2.9;
 Kd_ = 0.31;           % [m]    
 Ux = 10;       % [m/s]
