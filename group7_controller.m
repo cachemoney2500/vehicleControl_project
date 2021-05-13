@@ -3,10 +3,12 @@ function [delta, Fx ] = group7_controller( s, e, dpsi, Ux, Uy, r, control_mode, 
 % Spring 2021
 % Prof. Chris Gerdes & CAs Nathan Spielberg, John Alsterda, Alaisha
 % Alexander, Will Harvey, Lucio Mondavi, John Talbot, Trey Weber
+% Team Member email addresses
+% sergio16@stanford.edu
+% satyanc@stanford.edu
+% arbaird4@stanford.edu
+% moranc@stanford.edu
 
-
-%NOTE (Satyan) - anything marked with a '??' needs better conceptual reasoning and
-%final adjustment
 persistent e_history;
 if isempty(e_history)
     e_history = 0;
@@ -65,9 +67,9 @@ rho=1.225; %air density at room temperature
 %--------------------------------------------------------------------------
 %% Control Parameters (Satyan)
 %--------------------------------------------------------------------------
-gains.k_la = 10000; %arbitrarily chosen, ??
-gains.x_la = 10; %arbitrarily chosen, ??
-gains.k_lo = m*2; %m*.04*g; %arbitrarily chosen, ??
+gains.k_la = 10000; 
+gains.x_la = 10;
+gains.k_lo = m*2; 
 
 Kp = .65; 
 Kd = .3;  
