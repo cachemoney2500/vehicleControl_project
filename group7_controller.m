@@ -67,9 +67,9 @@ rho=1.225; %air density at room temperature
 %--------------------------------------------------------------------------
 %% Control Parameters (Satyan)
 %--------------------------------------------------------------------------
-gains.k_la = 10000; 
-gains.x_la = 10;
-gains.k_lo = m*2; 
+gains.k_la = 8600; 
+gains.x_la = 7.8;
+gains.k_lo = m*0.13*g; 
 
 Kp = .65; 
 Kd = .3;  
