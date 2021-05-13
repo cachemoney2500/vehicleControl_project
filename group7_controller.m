@@ -7,18 +7,15 @@ function [delta, Fx ] = group7_controller( s, e, dpsi, Ux, Uy, r, control_mode, 
 
 %NOTE (Satyan) - anything marked with a '??' needs better conceptual reasoning and
 %final adjustment
-dt = 0.001;
 persistent e_history;
 if isempty(e_history)
     e_history = 0;
 end
 
-if Ux > 1
+if Ux > 4
     e_history = e_history + e;
 end
 
-
-%e_history = [e_history, e];
 
 %--------------------------------------------------------------------------
 %% Constants
@@ -72,9 +69,9 @@ gains.k_la = 10000; %arbitrarily chosen, ??
 gains.x_la = 10; %arbitrarily chosen, ??
 gains.k_lo = m*2; %m*.04*g; %arbitrarily chosen, ??
 
-Kp = .5; 
+Kp = .65; 
 Kd = .3;  
-Ki = 0.01;
+Ki = 0.00975;
 
 
 %--------------------------------------------------------------------------
@@ -83,7 +80,6 @@ Ki = 0.01;
 %Use the Lateral Control Law to Calculate Delta
 
 if control_mode == 1 %Lookahead Controler
-    %started with linear stiffnesses, moved to fiala stiffnesses
     
     dpsi_ss=kappa*((m*a*Ux^2)/(L*r_tire.Ca_lin)-b); %nonlinear steady state dpsi (heading error), HW4
     K_grad=((Wf/f_tire.Ca_lin)-(Wr/r_tire.Ca_lin))/g; %understeer gradient, HW 2
@@ -96,14 +92,11 @@ else %Your second controller
     e_dot = Uy*cos(dpsi) + Ux*sin(dpsi);
     delta = -(Kp*e + Kd*e_dot + Ki*e_history);
     
-    %if the delta value goes over a certain value cap it at that value (for
-    %both negative and positive) Anti-windup
-%     value = deg2rad(20);
-%     if (delta > value)
-%         delta = value;
-%     elseif (delta < -value)
-%         delta = -value;
-%     end
+    % Anti-windup
+    if abs(e_history)>40
+        e_history = 0;
+    end
+    
 end
 
 % OBSERVATIONS FROM LATERAL ERROR CODE
