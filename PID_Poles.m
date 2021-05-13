@@ -13,9 +13,15 @@ close all
 setup_niki;
 
 % Gains and conditions
+<<<<<<< HEAD
 Kp_ = .65;   % [N/m]
 Ki_ = 2.7:0.01:2.9;
 Kd_ = 0.31;           % [m]    
+=======
+Kp_ = 0.65;   % [N/m]
+Ki_ = 0.00975;
+Kd_ = 0.3;           % [m]    
+>>>>>>> 1d2445c36b94322e71957664385b5a745bc5c846
 Ux = 10;       % [m/s]
 lenKla = length(Ki_);
 
@@ -90,6 +96,6 @@ xline(0,'--');
 grid on
 xlabel('Real Axis')
 ylabel('Imaginary Axis')
-cbar = colorbar('Ticks', Ki_);
-caxis([Ki_(1) Ki_(end)])
-cbar.Label.String = 'K_{p} [N/m]';
+% cbar = colorbar('Ticks', Ki_);
+% caxis([Ki_(1) Ki_(end)])
+% cbar.Label.String = 'K_{p} [N/m]';
