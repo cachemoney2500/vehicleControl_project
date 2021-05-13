@@ -7,7 +7,6 @@ function plotdata_me227(varargin)
 % Modified by Alaisha Alexander 5/10/21
 % Modified by Will Harvey 5/12/21
 %   - Updated subplot(2,2,1)
-%   - Added a final print statement to indicate code completion
 
 close all; clc;
 
@@ -45,12 +44,12 @@ f = figure('Name', 'ME227 Project Experiment', 'IntegerHandle', 'off');
 
     % Longitudinal speed
     subplot(2,2,1); hold on;
-    plot(t_, Ux_ * ones(1,length(t_)) , 'b--')
-    plot(t_, Ux_, 'r-')
+    plot(path.s_m, path.UxDes , 'b--')
+    plot(s_, Ux_, 'r-')
     grid on
-    xlabel('Time [s]')
+    xlabel('Path distance [m]')
     ylabel('Longitudinal Velocity, $u_x$ [m/s]')
-    legend('Desired Speed', 'Actual Speed', 'Location', 'South')
+    legend('Desired Speed', 'Actual Speed')
     
     % Steer Angle
     subplot(2,2,2)
@@ -73,4 +72,3 @@ f = figure('Name', 'ME227 Project Experiment', 'IntegerHandle', 'off');
     xlabel('Time [s]')
     ylabel('Longitudinal Force, $F_x$ [N]')
 
-disp("Script complete, but the plot may not appear for another minute or two.");

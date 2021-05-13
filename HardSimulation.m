@@ -15,8 +15,8 @@ clear brakeDynamics; clear engineDynamics; clear steeringDynamics;
 %% CONTROLLER SETUP
 %--------------------------------------------------------------------------
 % Select lookahead controller mode
-control_mode = 1; % Lookahead Controller
-%control_mode = 2; % Your second controller!
+%control_mode = 1; % Lookahead Controller
+control_mode = 2; % Your second controller!
 
 %--------------------------------------------------------------------------
 %% CONSTANTS AND PARAMS
@@ -132,8 +132,9 @@ end
 
 close(wait1);
 
+%added by Satyan
 if sim_mode==2
-    save('sim2_plots','t_','Ux_','delta_','e_','Fx_')
+    save('plots_for_sim2') %saves entire workspace, can also save specific variables only
 end
 
 plot_simulation(t_, Ux_, Uy_, r_, s_, e_, dpsi_, delta_, Fx_, Fx_r, Fx_f, ...
