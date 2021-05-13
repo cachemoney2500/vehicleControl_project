@@ -11,8 +11,8 @@
 setup_niki;
 
 % Gains and conditions
-Kp = 1.34;   % [N/m]
-Kd_ = 0.32:.005:0.34;           % [m]    
+Kp = .65;   % [N/m]
+Kd_ = 0:.1:1;           % [m]    
 Ux = 10;       % [m/s]
 lenKla = length(Kd_);
 
