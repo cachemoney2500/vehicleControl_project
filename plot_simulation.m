@@ -50,7 +50,7 @@ grid on
 xlabel('Time [s]')
 ylabel('dpsi [deg]')
 
-%saveas(figure(1),[pwd '/plots-Lookahead/sim3/states.jpg']);
+%saveas(figure(1),[pwd '/plots-Lookahead/sim0/states.jpg']);
 
 % Plot the actuator commands
 figure
@@ -75,7 +75,7 @@ xlabel('Time [s]')
 legend('Commanded','Actual')
 ylabel('Total Longitudinal Force [Fx]')
 
-%saveas(figure(2),[pwd '/plots-Lookahead/sim3/actuator.jpg']);
+%saveas(figure(2),[pwd '/plots-Lookahead/sim0/actuator.jpg']);
 
 % Plot tire forces
 figure
@@ -102,7 +102,7 @@ xlabel('Time [s]')
 ylabel('Rear Lateral Force [N]')
 ylabel('Rear Lateral Force [F_{yr}]')
 
-%saveas(figure(3),[pwd '/plots-Lookahead/sim3/tire-forces.jpg']);
+%saveas(figure(3),[pwd '/plots-Lookahead/sim0/tire-forces.jpg']);
 
 % Plot Accelerations
 figure
@@ -118,7 +118,7 @@ title('Acceleration vs. Path Position')
 leg1 = legend('a_x','a_y','a_{tot}');
 set(leg1,'Interpreter','tex')
 
-%saveas(figure(4),[pwd '/plots-Lookahead/sim3/accel.jpg']);
+%saveas(figure(4),[pwd '/plots-Lookahead/sim0/accel.jpg']);
 
 % Plot speed profile
 figure
