@@ -45,7 +45,7 @@ f = figure('Name', 'ME227 Project Experiment', 'IntegerHandle', 'off');
 
     % Longitudinal speed
     subplot(2,2,1); hold on;
-    plot(t_, Ux_' * ones(1,length(t_)) , 'b--')
+    plot(t_, Ux_ * ones(1,length(t_)) , 'b--')
     plot(t_, Ux_, 'r-')
     grid on
     xlabel('Time [s]')
