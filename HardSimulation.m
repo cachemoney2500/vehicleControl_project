@@ -26,8 +26,7 @@ setup_niki;
 
 % Create time vector
 dt = 0.001;
-t_ = 0:dt:40; %Note: 35 seconds is about how long it takes to traverse the path
-%(Change by Satyan to 40 secs to confirm stability after 35 seconds)
+t_ = 0:dt:35; %Note: 35 seconds is about how long it takes to traverse the path
 lenT = length(t_);
 
 % Load path and speed profile
