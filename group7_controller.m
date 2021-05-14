@@ -14,8 +14,9 @@ if isempty(e_history)
     e_history = 0;
 end
 
+dt = 0.005;
 if Ux > 4
-    e_history = e_history + e;
+    e_history = e_history + dt*e;
 end
 
 
@@ -71,9 +72,9 @@ gains.k_la = 8600;
 gains.x_la = 7.8;
 gains.k_lo = m*0.13*g; 
 
-Kp = .65; 
-Kd = .3;  
-Ki = 0.00975;
+Kp = .48; 
+Kd = .19;  
+Ki = 0.23;
 
 
 %--------------------------------------------------------------------------
@@ -92,7 +93,11 @@ if control_mode == 1 %Lookahead Controler
 else %Your second controller
     
     e_dot = Uy*cos(dpsi) + Ux*sin(dpsi);
-    delta = -(Kp*e + Kd*e_dot + Ki*e_history);
+    K_grad =((Wf/f_tire.Ca_lin)-(Wr/r_tire.Ca_lin))/g;
+    
+    delta_PID = -(Kp*e + Kd*e_dot + Ki*e_history);
+    delta_ff = kappa*(L + (K_grad*Ux^2));
+    delta = delta_PID + delta_ff;
     
     % Anti-windup
     if abs(e_history)>40
